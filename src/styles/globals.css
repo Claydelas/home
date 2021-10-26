@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tw-clr-primary-400: 0, 224, 243;
+  --tw-clr-primary-500: 0, 196, 253;
+
+  --clr-primary-400: rgb(var(--tw-clr-primary-400)); /* #00e0f3 */
+  --clr-primary-500: rgb(var(--tw-clr-primary-500)); /* #00c4fd */
+}
+
+@layer base {
+
+  h1 {
+    @apply text-2xl font-bold md:text-4xl;
+  }
+
+  h2 {
+    @apply text-xl font-bold md:text-3xl;
+  }
+
+  h3 {
+    @apply text-lg font-bold md:text-2xl;
+  }
+
+  h4 {
+    @apply text-base font-bold md:text-lg;
+  }
+
+  body {
+    @apply text-sm md:text-base;
+  }
+
+  .bg-dark a.custom-link {
+    @apply border-gray-200 hover:border-gray-200/0;
+  }
+
+  .min-h-main {
+    @apply min-h-[calc(100vh-56px)];
+  }
+}
+
+@layer utilities {
+  .animated-underline {
+    background-image: linear-gradient(#33333300, #33333300),
+      linear-gradient(to right, var(--clr-primary-400), var(--clr-primary-500));
+    background-size: 100% 2px, 0 2px;
+    background-position: 100% 100%, 0 100%;
+    background-repeat: no-repeat;
+    transition: 0.3s ease;
+    transition-property: background-size, color, background-color, border-color;
+  }
+  .animated-underline:hover,
+  .animated-underline:focus-visible {
+    background-size: 0 2px, 100% 2px;
+  }
+}
