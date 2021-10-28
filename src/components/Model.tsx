@@ -13,11 +13,11 @@ const Model = () => {
   const refContainer = useRef<HTMLDivElement>(null)
   const [loading, setLoading] = useState(true)
   const [renderer, setRenderer] = useState<THREE.WebGLRenderer>()
-  const [_camera, setCamera] = useState<THREE.OrthographicCamera>()
+  const [, setCamera] = useState<THREE.OrthographicCamera>()
   const [target] = useState(new THREE.Vector3(0, 0, 0))
   const [initialCameraPosition] = useState(new THREE.Vector3(0, 10, 25))
   const [scene] = useState(new THREE.Scene())
-  const [_controls, setControls] = useState<OrbitControls>()
+  const [, setControls] = useState<OrbitControls>()
 
   const handleWindowResize = useCallback(() => {
     const { current: container } = refContainer

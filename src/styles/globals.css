@@ -10,8 +10,13 @@
   --clr-primary-500: rgb(var(--tw-clr-primary-500)); /* #00c4fd */
 }
 
-@layer base {
+@layer components {
+  .theme {
+    @apply transition duration-300 ease-in-out cursor-pointer hover:text-pink-400;
+  }
+}
 
+@layer base {
   h1 {
     @apply text-2xl font-bold md:text-4xl;
   }

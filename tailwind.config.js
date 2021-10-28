@@ -17,11 +17,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        light: '#f0e7db',
+        lgray: '#EEEEEE',
+        dark: '#202023',
         primary: {
           400: withOpacity('--tw-clr-primary-400'),
           500: withOpacity('--tw-clr-primary-500'),
         },
-        dark: '#222222',
       },
       keyframes: {
         flicker: {
