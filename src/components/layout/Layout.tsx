@@ -1,14 +1,14 @@
-import * as React from 'react';
+import { ReactNode } from 'react';
 import Header from "@/components/layout/Header"
-import ModelLoader from '../ModelLoader'
+import ModelContainer from '@/components/containers/ModelContainer'
 import dynamic from 'next/dynamic'
 
-const Model = dynamic(() => import('../CozyModel'), {
+const Model = dynamic(() => import('../Model'), {
   ssr: false,
-  loading: () => <ModelLoader />
+  loading: () => <ModelContainer />
 })
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     // dark mode logic here
     <main className="min-h-screen text-white bg-dark">

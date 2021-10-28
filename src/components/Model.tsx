@@ -1,16 +1,17 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { loadGLTFModel } from '../lib/import-model'
-import { ModelContainer, Spinner } from './ModelLoader'
+import { loadGLTFModel } from '@/lib/import-model'
+import ModelContainer from '@/components/containers/ModelContainer'
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader'
 
 function easeOutCirc(x: number) {
   return Math.sqrt(1 - Math.pow(x - 1, 4))
 }
 
-const CozyModel = () => {
+const Model = () => {
   const refContainer = useRef<HTMLDivElement>(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [renderer, setRenderer] = useState<THREE.WebGLRenderer>()
   const [_camera, setCamera] = useState<THREE.OrthographicCamera>()
   const [target] = useState(new THREE.Vector3(0, 0, 0))
@@ -125,9 +126,12 @@ const CozyModel = () => {
 
   return (
     <ModelContainer ref={refContainer}>
-      {loading && <Spinner />}
+      {loading &&
+        <div className="relative left-1/2 top-1/2">
+          <ClimbingBoxLoader loading={loading} color="#ffffff" />
+        </div>}
     </ModelContainer>
   )
 }
 
-export default CozyModel
+export default Model
