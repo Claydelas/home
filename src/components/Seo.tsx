@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 const defaultMeta = {
   title: 'Home',
-  siteName: "Claydelas",
+  siteName: 'Claydelas',
   description: 'Place for my personal projects, interests and more.',
   url: 'localhost',
   type: 'website',
@@ -21,7 +21,9 @@ export default function Seo(props: SeoProps) {
     ...defaultMeta,
     ...props,
   };
-  meta['title'] = props.templateTitle ? `${props.templateTitle} | ${meta.siteName}` : meta.title;
+  meta['title'] = props.templateTitle
+    ? `${props.templateTitle} | ${meta.siteName}`
+    : meta.title;
 
   return (
     <Head>
@@ -38,11 +40,18 @@ export default function Seo(props: SeoProps) {
       {meta.date && (
         <>
           <meta property='article:published_time' content={meta.date} />
-          <meta name='publish_date' property='og:publish_date' content={meta.date} />
-          <meta name='author' property='article:author' content='Martin Valchev' />
+          <meta
+            name='publish_date'
+            property='og:publish_date'
+            content={meta.date}
+          />
+          <meta
+            name='author'
+            property='article:author'
+            content='Martin Valchev'
+          />
         </>
       )}
     </Head>
   );
 }
-
