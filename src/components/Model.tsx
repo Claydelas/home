@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { loadGLTFModel } from '@/lib/import-model';
 import ModelContainer from '@/components/containers/ModelContainer';
 import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
+import { useTheme } from 'next-themes';
 
 function easeOutCirc(x: number) {
   return Math.sqrt(1 - Math.pow(x - 1, 4));
@@ -18,6 +19,7 @@ const Model = () => {
   const [initialCameraPosition] = useState(new THREE.Vector3(0, 10, 25));
   const [scene] = useState(new THREE.Scene());
   const [, setControls] = useState<OrbitControls>();
+  const { theme } = useTheme();
 
   const handleWindowResize = useCallback(() => {
     const { current: container } = refContainer;
@@ -65,8 +67,8 @@ const Model = () => {
       setCamera(camera);
 
       // Lighting
-      scene.add(new THREE.PointLight(0xcccccc, 1, 5));
-      scene.add(new THREE.DirectionalLight(0xcccccc, 2));
+      scene.add(new THREE.PointLight(0xff3f56, 1, 5));
+      scene.add(new THREE.DirectionalLight(0xcccccc, 1.5));
 
       // Controls
       const controls = new OrbitControls(camera, renderer.domElement);
@@ -77,7 +79,7 @@ const Model = () => {
       setControls(controls);
 
       // Load exported model
-      loadGLTFModel(scene, '/cozy.glb', {
+      loadGLTFModel(scene, '/cozy_alt.glb', {
         receiveShadow: true,
         castShadow: true,
       }).then(() => {
@@ -129,7 +131,10 @@ const Model = () => {
     <ModelContainer ref={refContainer}>
       {loading && (
         <div className='relative left-1/2 top-1/2'>
-          <ClimbingBoxLoader loading={loading} color='#ffffff' />
+          <ClimbingBoxLoader
+            loading={loading}
+            color={`${theme === 'dark' ? '#f0e7db' : '#202023'}`}
+          />
         </div>
       )}
     </ModelContainer>
