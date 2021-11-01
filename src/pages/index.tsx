@@ -13,12 +13,12 @@ export default function HomePage() {
           Hello, welcome to my cosy home!
         </div>
 
-        <div className='md:flex'>
+        <div className='md:flex text-center md:text-left'>
           <div className='flex-grow'>
             <h2>Martin Valchev</h2>
             <p>Athlete by day / Developer by night</p>
           </div>
-          <figure className='flex-shrink-0 mt-4 md:mt-0 text-center'>
+          <figure className='flex-shrink-0 mt-4 md:mt-0'>
             <Image
               className='inline-block !border-2 !border-solid !rounded-full !border-light'
               src='/images/martin-bw.png'

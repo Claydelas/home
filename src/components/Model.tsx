@@ -1,144 +1,29 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { loadGLTFModel } from '@/lib/import-model';
-import ModelContainer from '@/components/containers/ModelContainer';
-import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
-import { useTheme } from 'next-themes';
+import { useGLTF } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 
 function easeOutCirc(x: number) {
   return Math.sqrt(1 - Math.pow(x - 1, 4));
 }
 
-const Model = () => {
-  const refContainer = useRef<HTMLDivElement>(null);
-  const [loading, setLoading] = useState(true);
-  const [renderer, setRenderer] = useState<THREE.WebGLRenderer>();
-  const [, setCamera] = useState<THREE.OrthographicCamera>();
-  const [target] = useState(new THREE.Vector3(0, 0, 0));
-  const [initialCameraPosition] = useState(new THREE.Vector3(0, 10, 25));
-  const [scene] = useState(new THREE.Scene());
-  const [, setControls] = useState<OrbitControls>();
-  const { theme } = useTheme();
+type ModelProps = {
+  cpos: { x: number; y: number; z: number };
+} & JSX.IntrinsicElements['group'];
 
-  const handleWindowResize = useCallback(() => {
-    const { current: container } = refContainer;
-    if (container && renderer) {
-      const scW = container.clientWidth;
-      const scH = container.clientHeight;
-
-      // Update renderer to fill parent container space
-      renderer.setSize(scW, scH);
+export default function Model({ cpos, ...props }: ModelProps) {
+  const { scene } = useGLTF('/cozy.glb', true);
+  let frame = 0;
+  useFrame(({ camera }) => {
+    frame = frame <= 100 ? frame + 1 : frame;
+    if (frame <= 100) {
+      const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 20;
+      camera.position.y = 10;
+      camera.position.x =
+        cpos.x * Math.cos(rotSpeed) - cpos.z * Math.sin(rotSpeed);
+      camera.position.z =
+        cpos.z * Math.cos(rotSpeed) + cpos.x * Math.sin(rotSpeed);
     }
-  }, [renderer]);
+  });
+  return <primitive object={scene} {...props} />;
+}
 
-  /* eslint-disable react-hooks/exhaustive-deps */
-  useEffect(() => {
-    const { current: container } = refContainer;
-    if (container && !renderer) {
-      const scW = container.clientWidth;
-      const scH = container.clientHeight;
-
-      // Renderer
-      const renderer = new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true,
-      });
-      renderer.setPixelRatio(window.devicePixelRatio);
-      renderer.setSize(scW, scH);
-      renderer.outputEncoding = THREE.sRGBEncoding;
-
-      // Insert renderer into DOM
-      container.appendChild(renderer.domElement);
-      setRenderer(renderer);
-
-      // Camera
-      const scale = scH * 0.005 + 4.8;
-      const camera = new THREE.OrthographicCamera(
-        -scale,
-        scale,
-        scale,
-        -scale,
-        0.1,
-        1000
-      );
-      camera.position.copy(initialCameraPosition);
-      camera.lookAt(target);
-      setCamera(camera);
-
-      // Lighting
-      scene.add(new THREE.PointLight(0xff3f56, 1, 5));
-      scene.add(new THREE.DirectionalLight(0xcccccc, 1.5));
-
-      // Controls
-      const controls = new OrbitControls(camera, renderer.domElement);
-      controls.autoRotate = true;
-      controls.enableDamping = true;
-      controls.autoRotateSpeed *= -1;
-      controls.target = target;
-      setControls(controls);
-
-      // Load exported model
-      loadGLTFModel(scene, '/cozy_alt.glb', {
-        receiveShadow: true,
-        castShadow: true,
-      }).then(() => {
-        animate();
-        setLoading(false);
-      });
-
-      // Animation loop
-      let req: number;
-      let frame = 0;
-      const animate = () => {
-        req = requestAnimationFrame(animate);
-
-        frame = frame <= 100 ? frame + 1 : frame;
-
-        if (frame <= 100) {
-          const p = initialCameraPosition;
-          const rotSpeed = -easeOutCirc(frame / 120) * Math.PI * 20;
-
-          camera.position.y = 10;
-          camera.position.x =
-            p.x * Math.cos(rotSpeed) - p.z * Math.sin(rotSpeed);
-          camera.position.z =
-            p.z * Math.cos(rotSpeed) + p.x * Math.sin(rotSpeed);
-          camera.lookAt(target);
-        } else {
-          controls.update();
-        }
-
-        renderer.render(scene, camera);
-      };
-
-      return () => {
-        cancelAnimationFrame(req);
-        renderer.dispose();
-      };
-    }
-  }, []);
-
-  // Resizing logic
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowResize, false);
-    return () => {
-      window.removeEventListener('resize', handleWindowResize, false);
-    };
-  }, [renderer, handleWindowResize]);
-
-  return (
-    <ModelContainer ref={refContainer}>
-      {loading && (
-        <div className='relative left-1/2 top-1/2'>
-          <ClimbingBoxLoader
-            loading={loading}
-            color={`${theme === 'dark' ? '#f0e7db' : '#202023'}`}
-          />
-        </div>
-      )}
-    </ModelContainer>
-  );
-};
-
-export default Model;
+useGLTF.preload('/cozy.glb');
