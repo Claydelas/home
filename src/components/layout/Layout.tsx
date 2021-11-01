@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import Header from '@/components/layout/Header';
-import ModelContainer from '../containers/ModelContainer';
+import ModelContainer from '@/components/containers/ModelContainer';
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
