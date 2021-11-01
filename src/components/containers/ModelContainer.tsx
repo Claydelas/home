@@ -6,8 +6,20 @@ import { useTheme } from 'next-themes';
 import { Color, Vector3 } from 'three';
 import Model from '@/components/Model';
 
-function ModelContainer() {
+function Placeholder() {
   const { theme } = useTheme();
+  return (
+    <Html>
+      <div className='absolute left-1/2 top-1/2'>
+        <ClimbingBoxLoader
+          color={`${theme === 'dark' ? '#f0e7db' : '#202023'}`}
+        />
+      </div>
+    </Html>
+  );
+}
+
+function ModelContainer() {
   const cameraPos = new Vector3(0, 10, 25);
   const white = new Color(0.8, 0.8, 0.8);
 
@@ -23,17 +35,7 @@ function ModelContainer() {
           zoom: 23,
         }}
       >
-        <Suspense
-          fallback={
-            <Html>
-              <div className='absolute left-1/2 top-1/2'>
-                <ClimbingBoxLoader
-                  color={`${theme === 'dark' ? '#f0e7db' : '#202023'}`}
-                />
-              </div>
-            </Html>
-          }
-        >
+        <Suspense fallback={<Placeholder />}>
           <OrbitControls autoRotate autoRotateSpeed={-3} />
           <pointLight
             color={new Color(0.4, 0.25, 0.34)}

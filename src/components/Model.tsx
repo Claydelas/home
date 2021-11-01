@@ -21,6 +21,7 @@ export default function Model({ cpos, ...props }: ModelProps) {
         cpos.x * Math.cos(rotSpeed) - cpos.z * Math.sin(rotSpeed);
       camera.position.z =
         cpos.z * Math.cos(rotSpeed) + cpos.x * Math.sin(rotSpeed);
+      camera.lookAt(0, 0, 0);
     }
   });
   return <primitive object={scene} {...props} />;
