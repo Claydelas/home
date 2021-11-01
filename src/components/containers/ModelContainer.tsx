@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 
 const ModelLoader = dynamic(import('@/components/Model'), {
   ssr: false,
-  loading: () => <Loader />,
 });
 
 function Loader() {
@@ -28,9 +27,11 @@ function Loader() {
 }
 
 export default function ModelContainer() {
+  const [loading, setLoading] = useState(true);
   return (
     <div className='w-64 h-64 mx-auto mb-5 relative'>
-      <ModelLoader />
+      {loading && <Loader />}
+      <ModelLoader setLoading={setLoading} />
     </div>
   );
 }

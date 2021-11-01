@@ -1,17 +1,22 @@
 import { useGLTF, OrbitControls } from '@react-three/drei';
 import { useFrame, Canvas } from '@react-three/fiber';
 import { Color, Vector3 } from 'three';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 
 function easeOutCirc(x: number) {
   return Math.sqrt(1 - Math.pow(x - 1, 4));
 }
 
+type LoadingProps = {
+  loading?: boolean;
+  setLoading: (loading: boolean) => void;
+};
 type ModelProps = {
   cpos: { x: number; y: number; z: number };
-} & JSX.IntrinsicElements['group'];
+} & LoadingProps &
+  JSX.IntrinsicElements['group'];
 
-function Model({ cpos, ...props }: ModelProps) {
+function Model({ setLoading, cpos, ...props }: ModelProps) {
   const { scene } = useGLTF('/cozy.glb', true);
 
   let frame = 0;
@@ -27,10 +32,13 @@ function Model({ cpos, ...props }: ModelProps) {
       camera.lookAt(0, 0, 0);
     }
   });
+  useEffect(() => {
+    setLoading(false);
+  }, [setLoading]);
   return <primitive object={scene} {...props} />;
 }
 
-export default function ModelCanvas() {
+export default function ModelCanvas({ setLoading }: LoadingProps) {
   const cameraPos = new Vector3(0, 10, 25);
   const white = new Color(0.8, 0.8, 0.8);
 
@@ -56,7 +64,12 @@ export default function ModelCanvas() {
         />
         <directionalLight color={white} intensity={1.5} />
         <ambientLight color={white} intensity={0.15} />
-        <Model position={[0, -3, 0]} scale={[1.6, 1.6, 1.6]} cpos={cameraPos} />
+        <Model
+          position={[0, -3, 0]}
+          scale={[1.6, 1.6, 1.6]}
+          cpos={cameraPos}
+          setLoading={setLoading}
+        />
       </Suspense>
     </Canvas>
   );
