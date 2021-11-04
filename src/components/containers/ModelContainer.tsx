@@ -1,7 +1,7 @@
-import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
-import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
+import ClimbingBoxLoader from 'react-spinners/ClimbingBoxLoader';
 
 const ModelLoader = dynamic(import('@/components/Model'), {
   ssr: false,

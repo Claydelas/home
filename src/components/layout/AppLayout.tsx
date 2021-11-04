@@ -2,12 +2,17 @@ import { ReactNode } from 'react';
 import Header from '@/components/layout/Header';
 import ModelContainer from '@/components/containers/ModelContainer';
 
-export default function Layout({ children }: { children: ReactNode }) {
+type AppLayout = {
+  children: ReactNode;
+  includeModel: boolean;
+};
+
+export default function Layout({ children, includeModel }: AppLayout) {
   return (
     <>
       <Header />
       <main className='max-w-md mx-auto pt-12 px-4'>
-        <ModelContainer />
+        {includeModel && <ModelContainer />}
         {children}
         {/*Footer*/}
       </main>

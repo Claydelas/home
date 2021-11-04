@@ -20,7 +20,7 @@ export default function Header() {
   };
 
   return (
-    <nav className='fixed w-full z-1 backdrop-blur'>
+    <nav className='fixed w-full z-10 backdrop-blur'>
       <div className='flex flex-wrap items-center justify-between max-w-md p-2 mx-auto'>
         {links.map(({ href, label }) => (
           <CustomLink key={href} href={href}>

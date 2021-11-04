@@ -1,13 +1,11 @@
-import Layout from '@/components/layout/Layout';
 import ButtonLink from '@/components/links/ButtonLink';
 import Seo from '@/components/Seo';
 import Image from 'next/image';
 
 export default function HomePage() {
   return (
-    <Layout>
+    <>
       <Seo />
-
       <section>
         <div className='p-3 mb-6 text-center bg-white bg-opacity-40 rounded-lg dark:bg-opacity-10'>
           Hello, welcome to my cosy home!
@@ -30,7 +28,7 @@ export default function HomePage() {
           </figure>
         </div>
       </section>
-      <section className='delay-100'>
+      <section>
         <h3>Me</h3>
         <p className='text-justify'>
           Hello! I&apos;m a recent graduate, that is now ready to dive into the
@@ -46,9 +44,9 @@ export default function HomePage() {
           ourselves in the gym or competing in various video games as a team.
         </p>
         <div className='items-center my-4'>
-          <ButtonLink href='/rojects'>Projects</ButtonLink>
+          <ButtonLink href='https://github.com/Claydelas'>Projects</ButtonLink>
         </div>
       </section>
-    </Layout>
+    </>
   );
 }
