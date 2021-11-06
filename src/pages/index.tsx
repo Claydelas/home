@@ -1,4 +1,3 @@
-import ButtonLink from '@/components/links/ButtonLink';
 import Seo from '@/components/Seo';
 import Image from 'next/image';
 
@@ -43,9 +42,6 @@ export default function HomePage() {
           enjoy a good time with my friends playing basketball, working on
           ourselves in the gym or competing in various video games as a team.
         </p>
-        <div className='items-center my-4'>
-          <ButtonLink href='https://github.com/Claydelas'>Projects</ButtonLink>
-        </div>
       </section>
     </>
   );

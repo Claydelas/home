@@ -6,7 +6,7 @@ export default function NotFoundPage() {
   return (
     <>
       <Seo templateTitle='Not Found' />
-      <section className='min-h-[calc(100vh-3rem)] flex flex-col items-center justify-center text-center'>
+      <section className='min-h-main flex flex-col items-center justify-center text-center'>
         <RiAlarmWarningFill
           size={60}
           className='text-yellow-300 animate-flicker drop-shadow-glow'

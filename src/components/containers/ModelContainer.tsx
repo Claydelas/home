@@ -9,7 +9,7 @@ const ModelLoader = dynamic(import('@/components/Model'), {
 
 function Loader() {
   const [mounted, setMounted] = useState(false);
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -19,7 +19,7 @@ function Loader() {
     <div className='absolute left-1/2 top-1/2'>
       {mounted && (
         <ClimbingBoxLoader
-          color={`${theme === 'dark' ? '#f0e7db' : '#202023'}`}
+          color={`${resolvedTheme === 'dark' ? '#f0e7db' : '#202023'}`}
         />
       )}
     </div>
@@ -29,7 +29,7 @@ function Loader() {
 export default function ModelContainer() {
   const [loading, setLoading] = useState(true);
   return (
-    <div className='w-64 h-64 mx-auto mb-5 relative'>
+    <div className='w-64 h-64 mx-auto my-5 relative'>
       {loading && <Loader />}
       <ModelLoader setLoading={setLoading} />
     </div>

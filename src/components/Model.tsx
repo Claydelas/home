@@ -55,7 +55,7 @@ export default function ModelCanvas({ setLoading }: LoadingProps) {
   const night = new Color(0.87, 0.1, 0.55);
   const day = new Color(0.4, 0.25, 0.34);
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   return (
     <Canvas
       mode='concurrent'
@@ -72,17 +72,17 @@ export default function ModelCanvas({ setLoading }: LoadingProps) {
       <Suspense fallback={null}>
         <OrbitControls />
         <pointLight
-          color={theme === 'dark' ? night : day}
-          distance={theme === 'dark' ? 8 : 5}
-          power={theme === 'dark' ? 15 : 30}
+          color={resolvedTheme === 'dark' ? night : day}
+          distance={resolvedTheme === 'dark' ? 8 : 5}
+          power={resolvedTheme === 'dark' ? 15 : 30}
         />
         <directionalLight
           color={white}
-          intensity={theme === 'dark' ? 0.5 : 1.25}
+          intensity={resolvedTheme === 'dark' ? 0.5 : 1.25}
         />
         <ambientLight
           color={white}
-          intensity={theme === 'dark' ? 0.02 : 0.15}
+          intensity={resolvedTheme === 'dark' ? 0.02 : 0.15}
         />
         <Model
           position={[0, -3, 0]}

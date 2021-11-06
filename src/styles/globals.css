@@ -3,16 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --tw-clr-primary-400: 0, 224, 243;
-  --tw-clr-primary-500: 0, 196, 253;
+  --tw-clr-primary-400: 255, 192, 203;
+  --tw-clr-primary-500: 225, 199, 242;
 
-  --clr-primary-400: rgb(var(--tw-clr-primary-400)); /* #00e0f3 */
-  --clr-primary-500: rgb(var(--tw-clr-primary-500)); /* #00c4fd */
+  --clr-primary-400: rgb(var(--tw-clr-primary-400)); /* #FFC0CB */
+  --clr-primary-500: rgb(var(--tw-clr-primary-500)); /* #E1C7F2 */
 }
 
 @layer components {
   .theme {
-    @apply transition duration-300 ease-in-out cursor-pointer hover:text-pink-400;
+    @apply transition duration-300 ease-in-out cursor-pointer hover:text-pink-300;
   }
 }
 
@@ -37,12 +37,8 @@
     @apply text-sm md:text-base;
   }
 
-  .bg-dark a.custom-link {
-    @apply border-gray-200 hover:border-gray-200/0;
-  }
-
   .min-h-main {
-    @apply min-h-[calc(100vh-56px)];
+    @apply min-h-[calc(100vh-3rem)];
   }
 }
 
