@@ -1,3 +1,4 @@
+import Layout from '@/components/layout/PageLayout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 import { readdirSync, readFileSync } from 'fs';
@@ -23,7 +24,7 @@ export default function Project({ frontMatter, mdx }: ContentProps) {
   const description = frontMatter.summary;
 
   return (
-    <>
+    <Layout>
       <Seo title={title} description={description} />
       <section>
         <h3>{title}</h3>
@@ -34,7 +35,7 @@ export default function Project({ frontMatter, mdx }: ContentProps) {
           <MDXRemote {...mdx} />
         </article>
       </section>
-    </>
+    </Layout>
   );
 }
 

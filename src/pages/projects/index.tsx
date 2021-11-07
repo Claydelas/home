@@ -1,4 +1,5 @@
 import ProjectCard from '@/components/containers/ProjectCard';
+import Layout from '@/components/layout/PageLayout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 import type { tech } from '@/components/TechStack';
@@ -21,7 +22,7 @@ type ProjectsProps = {
 };
 
 const Projects = ({ projects }: ProjectsProps) => (
-  <>
+  <Layout>
     <Seo
       title='Projects'
       description="Notable projects I've been working on."
@@ -48,7 +49,7 @@ const Projects = ({ projects }: ProjectsProps) => (
         })}
       </div>
     </section>
-  </>
+  </Layout>
 );
 export default Projects;
 

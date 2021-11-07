@@ -1,9 +1,10 @@
+import Layout from '@/components/layout/PageLayout';
 import Seo from '@/components/Seo';
 import Image from 'next/image';
 
 export default function HomePage() {
   return (
-    <>
+    <Layout>
       <Seo />
       <section>
         <div className='p-3 mb-6 text-center bg-white bg-opacity-40 rounded-lg dark:bg-opacity-10'>
@@ -43,6 +44,6 @@ export default function HomePage() {
           ourselves in the gym or competing in various video games as a team.
         </p>
       </section>
-    </>
+    </Layout>
   );
 }

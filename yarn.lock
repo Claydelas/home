@@ -424,6 +424,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/is-prop-valid@npm:^0.8.2":
+  version: 0.8.8
+  resolution: "@emotion/is-prop-valid@npm:0.8.8"
+  dependencies:
+    "@emotion/memoize": 0.7.4
+  checksum: bb7ec6d48c572c540e24e47cc94fc2f8dec2d6a342ae97bc9c8b6388d9b8d283862672172a1bb62d335c02662afe6291e10c71e9b8642664a8b43416cdceffac
+  languageName: node
+  linkType: hard
+
+"@emotion/memoize@npm:0.7.4":
+  version: 0.7.4
+  resolution: "@emotion/memoize@npm:0.7.4"
+  checksum: 4e3920d4ec95995657a37beb43d3f4b7d89fed6caa2b173a4c04d10482d089d5c3ea50bbc96618d918b020f26ed6e9c4026bbd45433566576c1f7b056c3271dc
+  languageName: node
+  linkType: hard
+
 "@emotion/memoize@npm:^0.7.4":
   version: 0.7.5
   resolution: "@emotion/memoize@npm:0.7.5"
@@ -844,8 +860,8 @@ __metadata:
   linkType: hard
 
 "@react-three/fiber@npm:^7.0.17":
-  version: 7.0.17
-  resolution: "@react-three/fiber@npm:7.0.17"
+  version: 7.0.18
+  resolution: "@react-three/fiber@npm:7.0.18"
   dependencies:
     "@babel/runtime": ^7.13.10
     react-merge-refs: ^1.1.0
@@ -864,7 +880,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: f715bd57a0bdefece341e6a0fb0407cf9014fe64a119d15b1f9eb7267026d949275c16a418c8d3906740be64b10441c1eeb8d5bd005c5215ee808158806ea67a
+  checksum: 8ccfc1935946d8cb619651d81f283c3ab4b41eca0fb07c6a7985c99ea4ff6fc017bb5140835222c8947e302bfb32d6e98c5bc3934e7f6476349a526a20cd9aff
   languageName: node
   linkType: hard
 
@@ -2475,11 +2491,11 @@ __metadata:
   linkType: hard
 
 "detect-gpu@npm:^3.1.21":
-  version: 3.1.24
-  resolution: "detect-gpu@npm:3.1.24"
+  version: 3.1.25
+  resolution: "detect-gpu@npm:3.1.25"
   dependencies:
     webgl-constants: ^1.1.1
-  checksum: 3279089b23889cf28ac6873a7a4bff68ab2157524f058969c2f33c510b60fb842e18cdef4e9c22c22e98c4a0e582b70aca665a2aba50c5cf7de28afcccb2f73c
+  checksum: 51284659d2602e96ac59bd8f1944c36e484d7a607cea9aeb23a27fcb66d0439bf15b739b32bbf0b7a6f67c59af9f9664d95aef4f611bd648fd8441a08b21ec3d
   languageName: node
   linkType: hard
 
@@ -3284,6 +3300,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"framer-motion@npm:^5.2.1":
+  version: 5.2.1
+  resolution: "framer-motion@npm:5.2.1"
+  dependencies:
+    "@emotion/is-prop-valid": ^0.8.2
+    framesync: 6.0.1
+    hey-listen: ^1.0.8
+    popmotion: 11.0.0
+    style-value-types: 5.0.0
+    tslib: ^2.1.0
+  peerDependencies:
+    react: ">=16.8 || ^17.0.0"
+    react-dom: ">=16.8 || ^17.0.0"
+  dependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+  checksum: e19e1eb063617965ad6783b62ae2437e69f6718244a5800c7c8cbe9d14b8c259bfd90edf33d34c02bcf37d5c4d03a41ef7f478f0ba16a17b57375d5dcc334379
+  languageName: node
+  linkType: hard
+
+"framesync@npm:6.0.1, framesync@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "framesync@npm:6.0.1"
+  dependencies:
+    tslib: ^2.1.0
+  checksum: a23ebe8f7e20a32c0b99c2f8175b6f07af3ec6316aad52a2316316a6d011d717af8d2175dcc2827031c59fabb30232ed3e19a720a373caba7f070e1eae436325
+  languageName: node
+  linkType: hard
+
 "fs-extra@npm:8.1.0":
   version: 8.1.0
   resolution: "fs-extra@npm:8.1.0"
@@ -3734,6 +3779,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hey-listen@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "hey-listen@npm:1.0.8"
+  checksum: 6bad60b367688f5348e25e7ca3276a74b59ac5a09b0455e6ff8ab7d4a9e38cd2116c708a7dcd8a954d27253ce1d8717ec891d175723ea739885b828cf44e4072
+  languageName: node
+  linkType: hard
+
 "hmac-drbg@npm:^1.0.1":
   version: 1.0.1
   resolution: "hmac-drbg@npm:1.0.1"
@@ -3772,6 +3824,7 @@ __metadata:
     eslint: ^7.32.0
     eslint-config-next: ^12.0.3
     eslint-config-prettier: ^8.3.0
+    framer-motion: ^5.2.1
     gray-matter: ^4.0.3
     next: ^12.0.3
     next-mdx-remote: ^3.0.7
@@ -5661,6 +5714,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"popmotion@npm:11.0.0":
+  version: 11.0.0
+  resolution: "popmotion@npm:11.0.0"
+  dependencies:
+    framesync: ^6.0.1
+    hey-listen: ^1.0.8
+    style-value-types: 5.0.0
+    tslib: ^2.1.0
+  checksum: 0e214895269bb3c9d2c5cbed2229d399cdea118f40cfd95f96b176439edf09d16becdef3dc3b820a6f53ab02a14e6047f04c89ee6991ddbd8b8194d7cfa59f0b
+  languageName: node
+  linkType: hard
+
 "postcss-js@npm:^3.0.3":
   version: 3.0.3
   resolution: "postcss-js@npm:3.0.3"
@@ -6879,6 +6944,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"style-value-types@npm:5.0.0":
+  version: 5.0.0
+  resolution: "style-value-types@npm:5.0.0"
+  dependencies:
+    hey-listen: ^1.0.8
+    tslib: ^2.1.0
+  checksum: 16d198302cd102edf9dba94e7752a2364c93b1eaa5cc7c32b42b28eef4af4ccb5149a3f16bc2a256adc02616a2404f4612bd15f3081c1e8ca06132cae78be6c0
+  languageName: node
+  linkType: hard
+
 "styled-jsx@npm:5.0.0-beta.3":
   version: 5.0.0-beta.3
   resolution: "styled-jsx@npm:5.0.0-beta.3"
@@ -7239,7 +7314,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2":
+"tslib@npm:^2, tslib@npm:^2.1.0":
   version: 2.3.1
   resolution: "tslib@npm:2.3.1"
   checksum: de17a98d4614481f7fcb5cd53ffc1aaf8654313be0291e1bfaee4b4bb31a20494b7d218ff2e15017883e8ea9626599b3b0e0229c18383ba9dce89da2adf15cb9
