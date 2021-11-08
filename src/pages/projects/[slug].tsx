@@ -2,13 +2,13 @@ import Layout from '@/components/layout/PageLayout';
 import CustomLink from '@/components/links/CustomLink';
 import Seo from '@/components/Seo';
 import { readdirSync, readFileSync } from 'fs';
-import matter from 'gray-matter';
+import { bundleMDX } from 'mdx-bundler';
+import { getMDXComponent } from 'mdx-bundler/client';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
-import { MDXRemote } from 'next-mdx-remote';
-import { serialize } from 'next-mdx-remote/serialize';
 import { join } from 'path';
 import type { ParsedUrlQuery } from 'querystring';
+import { useMemo } from 'react';
+import rehypePrism from 'rehype-prism-plus';
 import type { Project } from './index';
 
 interface IParams extends ParsedUrlQuery {
@@ -16,10 +16,11 @@ interface IParams extends ParsedUrlQuery {
 }
 
 type ContentProps = {
-  mdx: MDXRemoteSerializeResult;
+  code: string;
 } & Project;
 
-export default function Project({ frontMatter, mdx }: ContentProps) {
+export default function Project({ frontMatter, code }: ContentProps) {
+  const MDXComponent = useMemo(() => getMDXComponent(code), [code]);
   const title = frontMatter.title;
   const description = frontMatter.summary;
 
@@ -27,12 +28,12 @@ export default function Project({ frontMatter, mdx }: ContentProps) {
     <Layout>
       <Seo title={title} description={description} />
       <section>
-        <h3>{title}</h3>
+        <h1>{title}</h1>
         {frontMatter.source && (
           <CustomLink href={frontMatter.source}>[Source]</CustomLink>
         )}
         <article className='break-words mt-4'>
-          <MDXRemote {...mdx} />
+          <MDXComponent />
         </article>
       </section>
     </Layout>
@@ -54,13 +55,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params as IParams;
   const source = readFileSync(join('data/projects', `${slug}.mdx`), 'utf-8');
-  const { data: frontMatter, content } = matter(source);
-  const mdx = await serialize(content);
+
+  const { code, frontmatter } = await bundleMDX(source, {
+    xdmOptions(options) {
+      options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism];
+      return options;
+    },
+  });
   return {
     props: {
-      frontMatter,
+      frontMatter: frontmatter,
       slug,
-      mdx,
+      code,
     },
   };
 };
