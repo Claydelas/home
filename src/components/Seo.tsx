@@ -5,7 +5,7 @@ const defaultMeta = {
   title: 'Home',
   siteName: 'Claydelas',
   description: 'Place for my personal projects, interests and more.',
-  url: 'localhost',
+  url: process.env.SITE_URL ?? 'https://home-claydelas.vercel.app',
   type: 'website',
   robots: 'follow, index',
 };

@@ -156,6 +156,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@corex/deepmerge@npm:^2.6.34":
+  version: 2.6.34
+  resolution: "@corex/deepmerge@npm:2.6.34"
+  checksum: 73a396a32f7fc5698f7ad29bc1067d8499cb1767f91b315e6ef01abede34f4342a6c5ed264928f888569db6476a85f9a3f6e5a2261ec22a637d647661784b963
+  languageName: node
+  linkType: hard
+
 "@emotion/cache@npm:^11.5.0":
   version: 11.5.0
   resolution: "@emotion/cache@npm:11.5.0"
@@ -4054,6 +4061,7 @@ __metadata:
     gray-matter: ^4.0.3
     mdx-bundler: ^7.0.0
     next: ^12.0.3
+    next-sitemap: ^1.6.203
     next-themes: 0.0.15
     postcss: ^8.3.11
     prettier: ^2.4.1
@@ -5047,6 +5055,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"matcher@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "matcher@npm:4.0.0"
+  dependencies:
+    escape-string-regexp: ^4.0.0
+  checksum: d338aff31d8dfd3626873e43777f46b123579734d53bb8d18d64b08a822ba5e8d39f5fe2e23403258e6143aa0cbe20a15662720d825cd0d3af961d5a44230328
+  languageName: node
+  linkType: hard
+
 "md5.js@npm:^1.3.4":
   version: 1.3.5
   resolution: "md5.js@npm:1.3.5"
@@ -5649,7 +5666,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimist@npm:1.2.5, minimist@npm:^1.1.1, minimist@npm:^1.2.0":
+"minimist@npm:1.2.5, minimist@npm:^1.1.1, minimist@npm:^1.2.0, minimist@npm:^1.2.5":
   version: 1.2.5
   resolution: "minimist@npm:1.2.5"
   checksum: 86706ce5b36c16bfc35c5fe3dbb01d5acdc9a22f2b6cc810b6680656a1d2c0e44a0159c9a3ba51fb072bb5c203e49e10b51dcd0eec39c481f4c42086719bae52
@@ -5804,6 +5821,21 @@ __metadata:
   version: 0.6.2
   resolution: "negotiator@npm:0.6.2"
   checksum: dfddaff6c06792f1c4c3809e29a427b8daef8cd437c83b08dd51d7ee11bbd1c29d9512d66b801144d6c98e910ffd8723f2432e0cbf8b18d41d2a09599c975ab3
+  languageName: node
+  linkType: hard
+
+"next-sitemap@npm:^1.6.203":
+  version: 1.6.203
+  resolution: "next-sitemap@npm:1.6.203"
+  dependencies:
+    "@corex/deepmerge": ^2.6.34
+    matcher: ^4.0.0
+    minimist: ^1.2.5
+  peerDependencies:
+    next: "*"
+  bin:
+    next-sitemap: bin/next-sitemap
+  checksum: a083a5ab9e6dc6345dcb27207d31a46dd4f84ff3cc7fa673038ed82d9961cbb7481958e35e67f6febff659d4e99749ab3256bab1263917f4e842d82147ab49b4
   languageName: node
   linkType: hard
 
