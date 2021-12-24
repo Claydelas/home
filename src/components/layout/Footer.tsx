@@ -20,7 +20,7 @@ export default function Footer() {
           </div>
         </UnstyledLink>
         |
-        <UnstyledLink href='https://www.instagram.com/s._.marto'>
+        <UnstyledLink href='https://www.instagram.com/s._.marto/'>
           <div className='flex items-center gap-1'>
             <FaInstagram />
             s._.marto

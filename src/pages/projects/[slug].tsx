@@ -56,7 +56,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const { slug } = context.params as IParams;
   const source = readFileSync(join('data/projects', `${slug}.mdx`), 'utf-8');
 
-  const { code, frontmatter } = await bundleMDX(source, {
+  const { code, frontmatter } = await bundleMDX({
+    source,
     xdmOptions(options) {
       options.rehypePlugins = [...(options?.rehypePlugins ?? []), rehypePrism];
       return options;
